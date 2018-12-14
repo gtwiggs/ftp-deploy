@@ -1,0 +1,30 @@
+{
+    "name": "ftp-deploy",
+    "version": "0.1",
+    "description": "Deploy a static site via ftp.",
+    "main": "./lib/index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/gtwiggs/ftp-deploy"
+    },
+    "keywords": [
+        "ftp", "deploy", "site"
+    ],
+    "author": {
+        "name": "Glenn Twiggs"
+    },
+    "readmeFilename": "README.md",
+    "dependencies": {},
+    "devDependencies": {},
+    "optionalDependencies": {},
+    "engines": {
+        "node": "*"
+    },
+    "bugs": {
+        "url": "https://github.com/gtwiggs/ftp-deploy/issues"
+    },
+    "homepage": "https://github.com/gtwiggs/ftp-deploy",
+    "_id": "ftp-deploy@0.1",
+    "scripts": {},
+    "_from": "ftp-deploy@"
+}
