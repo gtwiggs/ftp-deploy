@@ -11,9 +11,9 @@ Add to scripts section of package.json:
 
 # Options
 
-domain: `'directory-path-on-server/'`
-stageDir: `'html.stage/'`
-localDir: `'public/'`
-ftp.host: `'hostname'`
-ftp.user: `'username'`
-ftp.password: `'password'`
+- domain: `'directory-path-on-server/'`
+- stageDir: `'html.stage/'`
+- localDir: `'public/'`
+- ftp.host: `'hostname'`
+- ftp.user: `'username'`
+- ftp.password: `'password'`
