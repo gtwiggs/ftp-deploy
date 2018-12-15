@@ -1,8 +1,8 @@
 {
     "name": "ftp-deploy",
-    "version": "0.1",
+    "version": "0.1.0",
     "description": "Deploy a static site via ftp.",
-    "main": "./lib/index.js",
+    "main": "index.js",
     "repository": {
         "type": "git",
         "url": "https://github.com/gtwiggs/ftp-deploy"
@@ -11,7 +11,9 @@
         "ftp", "deploy", "site"
     ],
     "author": {
-        "name": "Glenn Twiggs"
+        "name": "Glenn Twiggs",
+        "email": "info@glenntwiggs.com",
+        "url": "http://glenntwiggs.com"
     },
     "readmeFilename": "README.md",
     "dependencies": {},

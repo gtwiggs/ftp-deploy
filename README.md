@@ -6,14 +6,14 @@ Existing site will be moved to a backup directory.
 Add to scripts section of package.json:
 
 ```javascript
-"deploy": "node js/ftp-deploy.js"
+"deploy": "node js/ftp-deploy.js -domain domain/ -host host -user user -pw password [-stage stage/] [-local local/]"
 ```
 
 # Options
 
-- domain: `'directory-path-on-server/'`
-- stageDir: `'html.stage/'`
-- localDir: `'public/'`
-- ftp.host: `'hostname'`
-- ftp.user: `'username'`
-- ftp.password: `'password'`
+- domain: `'path-on-server/'`
+- host: `'hostname'`
+- user: `'username'`
+- pw: `'password'`
+- stage: `'html.stage/'`
+- local: `'public/'`
