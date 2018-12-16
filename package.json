@@ -1,10 +1,10 @@
 {
-  "name": "ftp-deploy",
-  "version": "0.1.0",
+  "name": "peyotl",
+  "version": "0.1.2",
   "description": "Deploy a static site via ftp.",
   "main": "lib/ftp-deploy.js",
   "bin": {
-    "dewploy": "bin/run.js"
+    "peyotl": "bin/run.js"
   },
   "repository": {
     "type": "git",

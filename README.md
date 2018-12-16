@@ -6,7 +6,7 @@ Existing site will be moved to a backup directory.
 Add to scripts section of package.json:
 
 ```javascript
-"deploy": "node js/ftp-deploy.js --domain domain --host host --user user --pw password [--stage stage] [--local local]"
+"deploy": "peyotl --domain domain --host host --user user --pw password [--stage stage] [--local local]"
 ```
 
 # Options
