@@ -13,8 +13,6 @@ var Promise = require("bluebird");
 var fileSystem = require("file-system");
 var PromiseFtp = require("promise-ftp");
 
-var ftp = new PromiseFtp();
-
 /**
  * File specification for deployment.
  * @param {string} path pathname of local directory entry
@@ -28,6 +26,8 @@ function FileSpec(path, isFile, remotePath) {
 }
 
 module.exports = {
+  ftp: new PromiseFtp(),
+
   /**
    * Builds a manifest of file specifications for static site.
    * @param {string} path full or relative pathname of the static site directory.
@@ -54,9 +54,10 @@ module.exports = {
   },
 
   deploy: function(opts) {
-    var retval = true;
+    // Locally scoped version for access in promise chain.
+    var ftp = this.ftp;
 
-    ftp
+    return ftp
       .connect(opts.ftp)
       .then(function(serverMessage) {
         // Delete staging directory.
@@ -112,7 +113,7 @@ module.exports = {
       .then(backupPath => {
         // Backup production html directory.
         console.log("Renaming", opts.domain + "html/", "to", backupPath);
-        return ftp.rename(opts.domain + "html/", backupPath);
+        return this.ftp.rename(opts.domain + "html/", backupPath);
       })
       .then(message => {
         // Deploy stage directory.
@@ -123,22 +124,21 @@ module.exports = {
           "to",
           opts.domain + "html/"
         );
-        return ftp.rename(opts.domain + opts.stageDir, opts.domain + "html/");
+        return this.ftp.rename(opts.domain + opts.stageDir, opts.domain + "html/");
       })
       .then(message => {
         // Log final message.
         console.log(message);
       })
       .catch(error => {
-        console.log(error);
-        retval = false;
+        console.log("Deploy faled:", error);
       })
       .finally(function(ignore) {
+        if (ftp.getConnectionStatus() === PromiseFtp.STATUSES.CONNECTED) {
+          return ftp.end();
+        }
         console.log("Done!");
-        return ftp.end();
-      });
-
-    return retval;
+      }).return;
   },
 
   ensureTrailingSlash: function(str) {
@@ -184,4 +184,5 @@ module.exports = {
     return this.deploy(opts);
   }
 };
-// ftpDeploy(process.argv.slice(2))
+
+module.ftpDeploy(process.argv.slice(2))
