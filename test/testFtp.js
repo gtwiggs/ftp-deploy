@@ -54,3 +54,15 @@ test.skip("ftp call flow", function(t) {
 
   t.end();
 });
+
+// Fragile: needs to be updated whenever a new test file is added.
+test("build manifest", function(t) {
+  var manifest = F.buildManifest("test", "remote");
+  t.same(manifest.length, 2);
+  manifest.forEach(fileSpec => {
+    t.assert(fileSpec['path'].startsWith("test"));
+    t.assert(fileSpec['isFile']);
+    t.assert(fileSpec['remotePath'].startsWith("remote"));
+  })
+  t.end();
+})
