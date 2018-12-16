@@ -1,6 +1,6 @@
-var F = require("../index.js");
-var test = require("tape");
-var sinon = require("sinon");
+const F = require("../lib/ftp-deploy.js");
+const test = require("tape");
+const sinon = require("sinon");
 
 /*
     These tests exercise the capabilities of argv parsing by using both forms:

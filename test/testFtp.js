@@ -1,8 +1,8 @@
-var F = require("../index.js");
-var PromiseFtp = require("promise-ftp");
+const F = require("../lib/ftp-deploy.js");
+const PromiseFtp = require("promise-ftp");
 
-var test = require("tape");
-var sinon = require("sinon");
+const test = require("tape");
+const sinon = require("sinon");
 
 test("connect with expected args, error during connection", function(t) {
   var connectStub = sinon.stub(F.ftp, "connect");
