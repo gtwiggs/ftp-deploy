@@ -58,12 +58,16 @@ test.skip("ftp call flow", function(t) {
 // Fragile: depends on contents of test/data directory.
 test("build manifest", function(t) {
   var manifest = F.buildManifest("test/data", "remote");
-  console.dir(manifest)
-  t.same(manifest.length, 2);
+  console.dir(manifest);
+  t.same(
+    manifest.length,
+    3,
+    `files found: ${manifest.map(it => it.path).join(", ")}`
+  );
   manifest.forEach(fileSpec => {
-    console.dir(fileSpec)
-    t.assert(fileSpec['path'].startsWith("test/data"));
-    t.assert(fileSpec['remotePath'].startsWith("remote"));
-  })
+    console.dir(fileSpec);
+    t.assert(fileSpec["path"].startsWith("test/data"));
+    t.assert(fileSpec["remotePath"].startsWith("remote"));
+  });
   t.end();
-})
+});
