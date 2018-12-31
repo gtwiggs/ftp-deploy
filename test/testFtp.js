@@ -61,22 +61,20 @@ test("build manifest", function(t) {
     "test/data/.htaccess",
     "test/data/folder",
     "test/data/folder/nestedFolder",
-    "test/data/folder/nestedFolder/file.txt",
+    "test/data/folder/nestedFolder/file.txt"
   ];
+  const expectedRemote = "remote";
 
   t.plan(expectedFiles.length + 1);
 
-  const manifest = F.buildManifest("test/data", "remote");
+  const manifest = F.buildManifest("test/data", expectedRemote);
 
-  console.dir(manifest);
-  expectedFiles.forEach(name => {
+  expectedFiles.forEach((name, index) => {
     t.assert(
-      manifest.find(fileSpec => {
-        return fileSpec.path === name &&
-          fileSpec["remotePath"].startsWith("remote");
-      }),
-      name
-    );
+      manifest[index].path === name &&
+        manifest[index].remotePath.startsWith(expectedRemote)
+    ),
+      `file ${name} at index ${index} starting with ${expectedRemote}`;
   });
 
   t.same(
