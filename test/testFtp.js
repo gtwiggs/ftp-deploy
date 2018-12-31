@@ -65,16 +65,17 @@ test("build manifest", function(t) {
   ];
   const expectedRemote = "remote";
 
-  t.plan(expectedFiles.length + 1);
+  t.plan((expectedFiles.length * 2) + 1);
 
   const manifest = F.buildManifest("test/data", expectedRemote);
 
+  console.dir(manifest);
   expectedFiles.forEach((name, index) => {
+    t.isEqual(manifest[index].path, name);
     t.assert(
-      manifest[index].path === name &&
-        manifest[index].remotePath.startsWith(expectedRemote)
-    ),
-      `file ${name} at index ${index} starting with ${expectedRemote}`;
+      manifest[index].remotePath.startsWith(expectedRemote),
+      `${manifest[index].remotePath} should start with ${expectedRemote}`
+    );
   });
 
   t.same(
