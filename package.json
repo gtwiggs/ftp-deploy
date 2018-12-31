@@ -1,6 +1,6 @@
 {
   "name": "peyotl",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Deploy a static site via ftp.",
   "main": "lib/ftp-deploy.js",
   "bin": {
