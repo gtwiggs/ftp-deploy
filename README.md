@@ -23,7 +23,18 @@ Add the following to the scripts section of `package.json`:
 # todo
 
 - Provide a secure method for setting the password.
+- Rollback a version.
+  - Rollback latest
+  - Rollback by backup #
 - Make `buildManifest` usage of localDir robust. Specifying `./dir` instead of `dir` will cause a failure.
 - Update repo and files to reference the package name: `peyotl`.
 - Add tests for ftp processing. I'm sure there are many real-world situations that ere not accounted-for in the code.
 - Add configuration for the name of the HTML directory. Currently hardcoded to `html`.
+- Rearchitect to do an in-place synchronization.
+  - Continue to offer "stage and copy" as an option?
+  - Provide a dry-run feature.
+  - Make the dry-run interactive (perform sync on approval).
+- Track versions (based on `package.json` `"version"` configuration)
+  - Don't allow deployment if version already exists (like `npm publish`)
+  - Display available versions.
+  - Roll forward / roll back

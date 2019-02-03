@@ -4,6 +4,62 @@ const PromiseFtp = require("promise-ftp");
 const test = require("tape");
 const sinon = require("sinon");
 
+test("backupDirectoryName 1", function(t) {
+  const fileList = new Array(
+    { name: "another-file" },
+    { name: "." },
+    { name: ".." },
+    { name: "html.bak.1" },
+    { name: "html" }
+  );
+
+  t.same(F.backupDirectoryName(fileList), "html.bak.2");
+  t.end();
+});
+
+test("backupDirectoryName 3", function(t) {
+  const fileList = new Array(
+    { name: "html.bak.2" },
+    { name: "html" }
+  );
+
+  t.same(F.backupDirectoryName(fileList), "html.bak.3");
+  t.end();
+});
+
+test("backupDirectoryName 3", function(t) {
+  const fileList = new Array(
+    { name: "html/bak.3" },
+    { name: "html.bak.2" }
+  );
+
+  t.same(F.backupDirectoryName(fileList), "html.bak.3");
+  t.end();
+});
+
+test("backupDirectoryName empty", function(t) {
+  t.same(F.backupDirectoryName(new Array()), "html.bak.1");
+  t.end();
+});
+
+test("backupDirectoryName 1 - 10", function(t) {
+  const fileList = new Array(
+    { name: "html.bak.8" },
+    { name: "html.bak.2" },
+    { name: "html.bak.3" },
+    { name: "html.bak.4" },
+    { name: "html.bak.5" },
+    { name: "html.bak.6" },
+    { name: "html.bak.10" },
+    { name: "html.bak.1" },
+    { name: "html.bak.9" },
+    { name: "html.bak.7" }
+  );
+
+  t.same(F.backupDirectoryName(fileList), "html.bak.11");
+  t.end();
+});
+
 test("connect with expected args, error during connection", function(t) {
   var connectStub = sinon.stub(F.ftp, "connect");
   connectStub.rejects("test error");
