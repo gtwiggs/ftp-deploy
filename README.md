@@ -3,6 +3,11 @@
 Deploy a static site via ftp.
 Existing site will be moved to a backup directory named `html.bak.#` where `#` will be incremented for every deployment.
 
+**This repository is archived:**
+
+- Functionality is no longer needed; its provided by a hosting service.
+- There are several code vulnerabilities that need fixing before this project can be used outside of testing.
+
 # usage
 
 Add the following to the scripts section of `package.json`:
